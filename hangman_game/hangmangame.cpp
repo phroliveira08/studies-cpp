@@ -3,17 +3,15 @@
 using namespace std;
 
 string secretWord = "TESTE";
-std::vector<int> hits;
+vector<char> lettersBids;
 bool isRunning = true;
 
-bool thisBidIsGone(int indexBid)
+template <typename T>
+bool lookingLetter(char letterToCheck, T word)
 {
-  int lengthHits = hits.size();
-
-  for (int i = 0; i < lengthHits; i++)
+  for (char letter : word)
   {
-    int index = hits[i];
-    if (index == indexBid)
+    if (letter == letterToCheck)
     {
       return true;
     }
@@ -22,25 +20,16 @@ bool thisBidIsGone(int indexBid)
   return false;
 }
 
+bool thisBidIsGone(char letterBid)
+{
+  bool result = lookingLetter(letterBid, lettersBids);
+  return result;
+}
+
 bool thisBidIsRight(char letterBid)
 {
-  int lengthWord = secretWord.size();
-
-  for (int i = 0; i < lengthWord; i++)
-  {
-    char letter = secretWord[i];
-    if (letter == letterBid)
-    {
-      bool isGone = thisBidIsGone(i);
-      if (!isGone)
-      {
-        hits.push_back(i);
-        return true;
-      }
-    }
-  }
-
-  return false;
+  bool result = lookingLetter(letterBid, secretWord);
+  return result;
 }
 
 void game()
@@ -50,25 +39,23 @@ void game()
   {
     char letterBid;
     cin >> letterBid;
-    bool checkingBid = true;
-    bool isRight = false;
-    int numLettersRight = 0;
-    while (checkingBid)
+    bool isGone = thisBidIsGone(letterBid);
+    if (isGone)
     {
-      checkingBid = thisBidIsRight(letterBid);
-      if (checkingBid)
-      {
-        isRight = true;
-        numLettersRight++;
-      }
-    }
-    if (isRight)
-    {
-      cout << "You hit the bid!!";
+      cout << "That letter is gone, try other letter" << endl;
     }
     else
     {
-      cout << "You miss the bid :(";
+      lettersBids.push_back(letterBid);
+      bool isRight = thisBidIsRight(letterBid);
+      if (isRight)
+      {
+        cout << "You hit the bid!!" << endl;
+      }
+      else
+      {
+        cout << "You miss the bid :(" << endl;
+      }
     }
   }
 }
