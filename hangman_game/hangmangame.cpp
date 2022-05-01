@@ -5,6 +5,7 @@ using namespace std;
 string secretWord = "TESTE";
 vector<char> lettersBids;
 bool isRunning = true;
+int maxBidsWrong = 10;
 
 template <typename T>
 bool lookingLetter(char letterToCheck, T word)
@@ -32,11 +33,63 @@ bool thisBidIsRight(char letterBid)
   return result;
 }
 
+void printSecretWord()
+{
+  for (char letter : secretWord)
+  {
+    if (thisBidIsGone(letter))
+    {
+      cout << letter << "";
+    }
+    else
+    {
+      cout << "_";
+    }
+  }
+  cout << endl;
+}
+
+void checkingRules()
+{
+  int bidsWrong = 0;
+  int hits = 0;
+  int hitsNeeded = secretWord.size();
+
+  for (char letter : secretWord)
+  {
+    if (thisBidIsGone(letter))
+    {
+      hits++;
+    }
+  }
+
+  for (char letter : lettersBids)
+  {
+    if (!thisBidIsRight(letter))
+    {
+      bidsWrong++;
+    }
+  }
+
+  if (hits == hitsNeeded)
+  {
+    cout << "You win the game!!";
+    isRunning = false;
+  }
+
+  if (bidsWrong == maxBidsWrong)
+  {
+    cout << "You lose the game. The Secret Word is " << secretWord << endl;
+    isRunning = false;
+  }
+}
+
 void game()
 {
   cout << "You need to guess the word" << endl;
   while (isRunning)
   {
+    printSecretWord();
     char letterBid;
     cin >> letterBid;
     bool isGone = thisBidIsGone(letterBid);
@@ -57,6 +110,7 @@ void game()
         cout << "You miss the bid :(" << endl;
       }
     }
+    checkingRules();
   }
 }
 
