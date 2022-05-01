@@ -1,8 +1,14 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
-string secretWord = "TESTE";
+string filePath = "words.txt";
+vector<string> words;
+
+string secretWord;
 vector<char> lettersBids;
 bool isRunning = true;
 int maxBidsWrong = 10;
@@ -114,11 +120,45 @@ void game()
   }
 }
 
-int main()
+void readFile()
+{
+  ifstream file;
+  file.open(filePath);
+
+  if (file.is_open())
+  {
+    int numWords;
+    file >> numWords;
+
+    for (int i = 0; i < numWords; i++)
+    {
+      string word;
+      file >> word;
+      words.push_back(word);
+    }
+    file.close();
+  }
+  else
+  {
+    cout << "Error in open file with words... Closing game.....";
+    isRunning = false;
+  }
+}
+
+void introduction()
 {
   cout << "*********************************" << endl;
   cout << "**** Welcome to Hangman Game ****" << endl;
   cout << "*********************************" << endl;
+  readFile();
 
+  srand(time(NULL));
+  int randomIndex = rand() % words.size();
+  secretWord = words[randomIndex];
+}
+
+int main()
+{
+  introduction();
   game();
 }
