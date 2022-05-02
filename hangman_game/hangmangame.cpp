@@ -55,6 +55,53 @@ void printSecretWord()
   cout << endl;
 }
 
+void readFile()
+{
+  ifstream file;
+  file.open(filePath);
+
+  if (file.is_open())
+  {
+    int numWords;
+    file >> numWords;
+
+    for (int i = 0; i < numWords; i++)
+    {
+      string word;
+      file >> word;
+      words.push_back(word);
+    }
+    file.close();
+  }
+  else
+  {
+    cout << "Error in open file with words... Closing game.....";
+    isRunning = false;
+  }
+}
+
+void writeFile()
+{
+  ofstream file;
+  file.open(filePath);
+
+  if (file.is_open())
+  {
+    file << words.size() << endl;
+
+    for (int i = 0; i < words.size(); i++)
+    {
+      file << words[i] << endl;
+    }
+    file.close();
+  }
+  else
+  {
+    cout << "Error in open file with words... Closing game.....";
+    isRunning = false;
+  }
+}
+
 void checkingRules()
 {
   int bidsWrong = 0;
@@ -79,7 +126,18 @@ void checkingRules()
 
   if (hits == hitsNeeded)
   {
-    cout << "You win the game!!";
+    cout << "You win the game!!" << endl;
+    cout << "Do you want to add a word to the database? Y - Yes / N - No" << endl;
+    char answer;
+    cin >> answer;
+    if (answer == 'Y' || answer == 'y')
+    {
+      cout << "Type a word:" << endl;
+      string word;
+      cin >> word;
+      words.push_back(word);
+      writeFile();
+    }
     isRunning = false;
   }
 
@@ -117,31 +175,6 @@ void game()
       }
     }
     checkingRules();
-  }
-}
-
-void readFile()
-{
-  ifstream file;
-  file.open(filePath);
-
-  if (file.is_open())
-  {
-    int numWords;
-    file >> numWords;
-
-    for (int i = 0; i < numWords; i++)
-    {
-      string word;
-      file >> word;
-      words.push_back(word);
-    }
-    file.close();
-  }
-  else
-  {
-    cout << "Error in open file with words... Closing game.....";
-    isRunning = false;
   }
 }
 
