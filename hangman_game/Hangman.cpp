@@ -14,7 +14,7 @@ bool isRunning = true;
 int maxBidsWrong = 10;
 
 template <typename T>
-bool lookingLetter(char letterToCheck, T word)
+bool LookingLetter(char letterToCheck, T word)
 {
   for (char letter : word)
   {
@@ -27,23 +27,23 @@ bool lookingLetter(char letterToCheck, T word)
   return false;
 }
 
-bool thisBidIsGone(char letterBid)
+bool ThisBidIsGone(char letterBid)
 {
-  bool result = lookingLetter(letterBid, lettersBids);
+  bool result = LookingLetter(letterBid, lettersBids);
   return result;
 }
 
-bool thisBidIsRight(char letterBid)
+bool ThisBidIsRight(char letterBid)
 {
-  bool result = lookingLetter(letterBid, secretWord);
+  bool result = LookingLetter(letterBid, secretWord);
   return result;
 }
 
-void printSecretWord()
+void PrintSecretWord()
 {
   for (char letter : secretWord)
   {
-    if (thisBidIsGone(letter))
+    if (ThisBidIsGone(letter))
     {
       cout << letter << "";
     }
@@ -55,7 +55,7 @@ void printSecretWord()
   cout << endl;
 }
 
-void readFile()
+void ReadFile()
 {
   ifstream file;
   file.open(filePath);
@@ -80,7 +80,7 @@ void readFile()
   }
 }
 
-void writeFile()
+void WriteFile()
 {
   ofstream file;
   file.open(filePath);
@@ -102,7 +102,7 @@ void writeFile()
   }
 }
 
-void checkingRules()
+void CheckingRules()
 {
   int bidsWrong = 0;
   int hits = 0;
@@ -110,7 +110,7 @@ void checkingRules()
 
   for (char letter : secretWord)
   {
-    if (thisBidIsGone(letter))
+    if (ThisBidIsGone(letter))
     {
       hits++;
     }
@@ -118,7 +118,7 @@ void checkingRules()
 
   for (char letter : lettersBids)
   {
-    if (!thisBidIsRight(letter))
+    if (!ThisBidIsRight(letter))
     {
       bidsWrong++;
     }
@@ -136,7 +136,7 @@ void checkingRules()
       string word;
       cin >> word;
       words.push_back(word);
-      writeFile();
+      WriteFile();
     }
     isRunning = false;
   }
@@ -148,15 +148,15 @@ void checkingRules()
   }
 }
 
-void game()
+void Game()
 {
   cout << "You need to guess the word" << endl;
   while (isRunning)
   {
-    printSecretWord();
+    PrintSecretWord();
     char letterBid;
     cin >> letterBid;
-    bool isGone = thisBidIsGone(letterBid);
+    bool isGone = ThisBidIsGone(letterBid);
     if (isGone)
     {
       cout << "That letter is gone, try other letter" << endl;
@@ -164,7 +164,7 @@ void game()
     else
     {
       lettersBids.push_back(letterBid);
-      bool isRight = thisBidIsRight(letterBid);
+      bool isRight = ThisBidIsRight(letterBid);
       if (isRight)
       {
         cout << "You hit the bid!!" << endl;
@@ -174,16 +174,16 @@ void game()
         cout << "You miss the bid :(" << endl;
       }
     }
-    checkingRules();
+    CheckingRules();
   }
 }
 
-void introduction()
+void Introduction()
 {
   cout << "*********************************" << endl;
   cout << "**** Welcome to Hangman Game ****" << endl;
   cout << "*********************************" << endl;
-  readFile();
+  ReadFile();
 
   srand(time(NULL));
   int randomIndex = rand() % words.size();
@@ -192,6 +192,6 @@ void introduction()
 
 int main()
 {
-  introduction();
-  game();
+  Introduction();
+  Game();
 }
