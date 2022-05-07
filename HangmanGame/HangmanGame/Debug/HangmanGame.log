@@ -1,9 +1,0 @@
-﻿  File.cpp
-C:\programming\studies\studies_cpp\HangmanGame\HangmanGame\File.cpp(45,23): warning C4018: '<': signed/unsigned mismatch
-  Game.cpp
-C:\programming\studies\studies_cpp\HangmanGame\HangmanGame\Game.cpp(27,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Hangman.cpp
-  Rules.cpp
-  Utils.cpp
-  Generating Code...
-  HangmanGame.vcxproj -> C:\programming\studies\studies_cpp\HangmanGame\Debug\HangmanGame.exe
