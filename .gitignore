@@ -28,6 +28,7 @@
 
 #Others
 .vscode
+*.opendb
 
 # Executables
 *.exe
