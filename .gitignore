@@ -353,7 +353,7 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-vscode/
+.vscode/
 *.exe
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
