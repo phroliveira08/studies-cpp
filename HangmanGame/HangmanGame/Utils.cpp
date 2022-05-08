@@ -1,9 +1,4 @@
-#include <vector>
-#include <string>
 #include "Utils.hpp"
-
-extern std::string secretWord;
-extern std::vector<char> lettersBids;
 
 template <typename T>
 bool LookingLetter(char letterToCheck, T word)
@@ -19,13 +14,13 @@ bool LookingLetter(char letterToCheck, T word)
   return false;
 }
 
-bool ThisBidIsGone(char letterBid)
+bool ThisBidIsGone(char letterBid, std::vector<char> lettersBids)
 {
   bool result = LookingLetter(letterBid, lettersBids);
   return result;
 }
 
-bool ThisBidIsRight(char letterBid)
+bool ThisBidIsRight(char letterBid, std::string secretWord)
 {
   bool result = LookingLetter(letterBid, secretWord);
   return result;

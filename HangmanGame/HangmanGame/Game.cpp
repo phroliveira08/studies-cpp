@@ -19,7 +19,7 @@ int maxBidsWrong = 10;
 
 void Introduction()
 {
-  ReadFile();
+  isRunning = ReadFile(filePath, &words);
 
   srand(time(NULL));
   int randomIndex = rand() % words.size();
@@ -30,7 +30,7 @@ void PrintSecretWord()
 {
   for (char letter : secretWord)
   {
-    if (ThisBidIsGone(letter))
+    if (ThisBidIsGone(letter, lettersBids))
     {
       cout << letter << "";
     }
@@ -50,7 +50,7 @@ void Game()
     PrintSecretWord();
     char letterBid;
     cin >> letterBid;
-    bool isGone = ThisBidIsGone(letterBid);
+    bool isGone = ThisBidIsGone(letterBid, lettersBids);
     if (isGone)
     {
       cout << "That letter is gone, try other letter" << endl;
@@ -58,7 +58,7 @@ void Game()
     else
     {
       lettersBids.push_back(letterBid);
-      bool isRight = ThisBidIsRight(letterBid);
+      bool isRight = ThisBidIsRight(letterBid, secretWord);
       if (isRight)
       {
         cout << "You hit the bid!!" << endl;
@@ -68,6 +68,6 @@ void Game()
         cout << "You miss the bid :(" << endl;
       }
     }
-    CheckingRules();
+    isRunning = CheckingRules(secretWord, maxBidsWrong, lettersBids, filePath, &words);
   }
 }

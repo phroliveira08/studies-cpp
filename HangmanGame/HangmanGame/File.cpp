@@ -1,17 +1,12 @@
 #include <fstream>
 #include <iostream>
-#include <string>
-#include <vector>
 #include "File.hpp"
 
-extern std::string filePath;
-extern bool isRunning;
-extern std::vector<std::string> words;
-
-void ReadFile()
+bool ReadFile(std::string filePath, std::vector<std::string> *words)
 {
   std::ifstream file;
   file.open(filePath);
+  bool continueRunning = true;
 
   if (file.is_open())
   {
@@ -22,21 +17,24 @@ void ReadFile()
     {
       std::string word;
       file >> word;
-      words.push_back(word);
+      words->push_back(word);
     }
     file.close();
   }
   else
   {
     std::cout << "Error in open file with words... Closing game.....";
-    isRunning = false;
+    continueRunning = false;
   }
+
+  return continueRunning;
 }
 
-void WriteFile()
+bool WriteFile(std::string filePath, std::vector<std::string> words)
 {
   std::ofstream file;
   file.open(filePath);
+  bool continueRunning = true;
 
   if (file.is_open())
   {
@@ -51,6 +49,8 @@ void WriteFile()
   else
   {
     std::cout << "Error in open file with words... Closing game.....";
-    isRunning = false;
+    continueRunning = false;
   }
+
+  return continueRunning;
 }

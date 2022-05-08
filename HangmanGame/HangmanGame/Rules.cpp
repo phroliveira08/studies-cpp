@@ -1,24 +1,18 @@
 #include <iostream>
-#include <vector>
-#include <string>
 #include "Utils.hpp"
+#include "Rules.hpp"
 #include "File.hpp"
 
-extern std::vector<std::string> words;
-extern std::string secretWord;
-extern std::vector<char> lettersBids;
-extern bool isRunning;
-extern int maxBidsWrong;
-
-void CheckingRules()
+bool CheckingRules(std::string secretWord, int maxBidsWrong, std::vector<char> lettersBids, std::string filePath, std::vector<std::string> *words)
 {
   int bidsWrong = 0;
   int hits = 0;
   int hitsNeeded = secretWord.size();
+  bool continueRunning = true;
 
   for (char letter : secretWord)
   {
-    if (ThisBidIsGone(letter))
+    if (ThisBidIsGone(letter, lettersBids))
     {
       hits++;
     }
@@ -26,7 +20,7 @@ void CheckingRules()
 
   for (char letter : lettersBids)
   {
-    if (!ThisBidIsRight(letter))
+    if (!ThisBidIsRight(letter, secretWord))
     {
       bidsWrong++;
     }
@@ -43,15 +37,17 @@ void CheckingRules()
       std::cout << "Type a word:" << std::endl;
       std::string word;
       std::cin >> word;
-      words.push_back(word);
-      WriteFile();
+      words->push_back(word);
+      continueRunning = WriteFile(filePath, *words);
     }
-    isRunning = false;
+    continueRunning = false;
   }
 
   if (bidsWrong == maxBidsWrong)
   {
     std::cout << "You lose the game. The Secret Word is " << secretWord << std::endl;
-    isRunning = false;
+    continueRunning = false;
   }
+
+  return continueRunning;
 }
