@@ -4,6 +4,7 @@
 
 int main()
 {
-  Introduction();
-  Game();
+	TextIntroduction();]
+	Introduction();
+	Game();
 }

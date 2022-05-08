@@ -19,9 +19,6 @@ int maxBidsWrong = 10;
 
 void Introduction()
 {
-  cout << "*********************************" << endl;
-  cout << "**** Welcome to Hangman Game ****" << endl;
-  cout << "*********************************" << endl;
   ReadFile();
 
   srand(time(NULL));
