@@ -19,7 +19,7 @@ int maxBidsWrong = 10;
 
 void Introduction()
 {
-  isRunning = ReadFile(filePath, &words);
+  isRunning = ReadFile(filePath, words);
 
   srand(time(NULL));
   int randomIndex = rand() % words.size();
@@ -68,6 +68,6 @@ void Game()
         cout << "You miss the bid :(" << endl;
       }
     }
-    isRunning = CheckingRules(secretWord, maxBidsWrong, lettersBids, filePath, &words);
+    isRunning = CheckingRules(secretWord, maxBidsWrong, lettersBids, filePath, words);
   }
 }

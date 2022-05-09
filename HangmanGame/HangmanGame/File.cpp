@@ -2,7 +2,7 @@
 #include <iostream>
 #include "File.hpp"
 
-bool ReadFile(std::string filePath, std::vector<std::string> *words)
+bool ReadFile(std::string& filePath, std::vector<std::string>& words)
 {
   std::ifstream file;
   file.open(filePath);
@@ -17,7 +17,7 @@ bool ReadFile(std::string filePath, std::vector<std::string> *words)
     {
       std::string word;
       file >> word;
-      words->push_back(word);
+      words.push_back(word);
     }
     file.close();
   }
@@ -30,7 +30,7 @@ bool ReadFile(std::string filePath, std::vector<std::string> *words)
   return continueRunning;
 }
 
-bool WriteFile(std::string filePath, std::vector<std::string> words)
+bool WriteFile(std::string& filePath, std::vector<std::string>& words)
 {
   std::ofstream file;
   file.open(filePath);

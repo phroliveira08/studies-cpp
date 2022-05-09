@@ -3,7 +3,7 @@
 #include "Rules.hpp"
 #include "File.hpp"
 
-bool CheckingRules(std::string secretWord, int maxBidsWrong, std::vector<char> lettersBids, std::string filePath, std::vector<std::string> *words)
+bool CheckingRules(std::string& secretWord, int& maxBidsWrong, std::vector<char>& lettersBids, std::string& filePath, std::vector<std::string>& words)
 {
   int bidsWrong = 0;
   int hits = 0;
@@ -37,8 +37,8 @@ bool CheckingRules(std::string secretWord, int maxBidsWrong, std::vector<char> l
       std::cout << "Type a word:" << std::endl;
       std::string word;
       std::cin >> word;
-      words->push_back(word);
-      continueRunning = WriteFile(filePath, *words);
+      words.push_back(word);
+      continueRunning = WriteFile(filePath, words);
     }
     continueRunning = false;
   }
