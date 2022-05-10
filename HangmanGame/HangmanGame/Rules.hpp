@@ -2,4 +2,4 @@
 #include <string>
 #include <vector>
 
-bool CheckingRules(std::string& secretWord, int& maxBidsWrong, std::vector<char>& lettersBids, std::string& filePath, std::vector<std::string>& words);
+bool CheckingRules(const std::string& secretWord, const int& maxBidsWrong, const std::vector<char>& lettersBids, const std::string& filePath, std::vector<std::string>& words);

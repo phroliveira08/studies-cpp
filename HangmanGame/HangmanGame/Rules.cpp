@@ -3,7 +3,7 @@
 #include "Rules.hpp"
 #include "File.hpp"
 
-bool CheckingRules(std::string& secretWord, int& maxBidsWrong, std::vector<char>& lettersBids, std::string& filePath, std::vector<std::string>& words)
+bool CheckingRules(const std::string& secretWord, const int& maxBidsWrong, const std::vector<char>& lettersBids, const std::string& filePath, std::vector<std::string>& words)
 {
   int bidsWrong = 0;
   int hits = 0;

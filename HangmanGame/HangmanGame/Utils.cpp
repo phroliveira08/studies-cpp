@@ -1,7 +1,7 @@
 #include "Utils.hpp"
 
 template <typename T>
-bool LookingLetter(char& letterToCheck, T& word)
+bool LookingLetter(const char& letterToCheck, const T& word)
 {
   for (char letter : word)
   {
@@ -14,13 +14,13 @@ bool LookingLetter(char& letterToCheck, T& word)
   return false;
 }
 
-bool ThisBidIsGone(char& letterBid, std::vector<char>& lettersBids)
+bool ThisBidIsGone(const char& letterBid, const std::vector<char>& lettersBids)
 {
   bool result = LookingLetter(letterBid, lettersBids);
   return result;
 }
 
-bool ThisBidIsRight(char& letterBid, std::string& secretWord)
+bool ThisBidIsRight(const char& letterBid, const std::string& secretWord)
 {
   bool result = LookingLetter(letterBid, secretWord);
   return result;

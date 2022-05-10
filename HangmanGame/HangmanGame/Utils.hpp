@@ -3,6 +3,6 @@
 #include <vector>
 
 template <typename T>
-bool LookingLetter(char& letterToCheck, T& word);
-bool ThisBidIsGone(char& letterBid, std::vector<char>& lettersBids);
-bool ThisBidIsRight(char& letterBid, std::string& secretWord);
+bool LookingLetter(const char& letterToCheck,const  T& word);
+bool ThisBidIsGone(const char& letterBid, const std::vector<char>& lettersBids);
+bool ThisBidIsRight(const char& letterBid, const std::string& secretWord);
