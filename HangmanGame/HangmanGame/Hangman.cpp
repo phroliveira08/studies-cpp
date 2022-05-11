@@ -4,7 +4,7 @@
 
 int main()
 {
-	TextIntroduction();
-	Introduction();
-	Game();
+	Hangman::TextIntroduction();
+	Hangman::Introduction();
+	Hangman::Game();
 }

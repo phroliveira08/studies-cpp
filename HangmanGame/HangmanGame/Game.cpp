@@ -9,15 +9,14 @@
 #include "Rules.hpp"
 using namespace std;
 
-string filePath = "words.txt";
-vector<string> words;
+static string filePath = "words.txt";
+static vector<string> words;
+static string secretWord;
+static vector<char> lettersBids;
+static bool isRunning = true;
+static int maxBidsWrong = 10;
 
-string secretWord;
-vector<char> lettersBids;
-bool isRunning = true;
-int maxBidsWrong = 10;
-
-void Introduction()
+void Hangman::Introduction()
 {
   isRunning = ReadFile(filePath, words);
 
@@ -42,7 +41,7 @@ void PrintSecretWord()
   cout << endl;
 }
 
-void Game()
+void Hangman::Game()
 {
   cout << "You need to guess the word" << endl;
   while (isRunning)
