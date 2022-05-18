@@ -1,5 +1,11 @@
 #include "Account.h"
 
+Account::Account(std::string nameProfile, std::string accountNumber) {
+	this->nameProfile = nameProfile;
+	this->accountNumber = accountNumber;
+	this->balance = 0;
+}
+
 void Account::deposit(float valueToDeposit) {
 	if (valueToDeposit <= 0) {
 		return;
@@ -15,6 +21,11 @@ void Account::withdraw(float valueToWithdraw) {
 		return;
 	}
 	balance -= valueToWithdraw;
+}
+
+void Account::transferTo(Account &accountTo, float valueTo) {
+	this->withdraw(valueTo);
+	accountTo.deposit(valueTo);
 }
 
 float Account::getBalance() const {

@@ -3,13 +3,15 @@
 
 class Account {
 private:
-	std::string nameProfile = "Teste";
+	std::string nameProfile;
 	std::string accountNumber;
-	float balance = 0;
+	float balance;
 
 public:
+	Account(std::string nameProfile, std::string accountNumber);
 	void deposit(float valueToDeposit);
 	void withdraw(float valueToWithdraw);
+	void transferTo(Account &accountTo, float valueTo);
 	float getBalance() const;
 	std::string getNameProfile() const;
 };
