@@ -35,3 +35,7 @@ float Account::getBalance() const {
 std::string Account::getNameProfile() const {
 	return nameProfile;
 }
+
+std::string Account::getAccountNumber() const {
+	return accountNumber;
+}

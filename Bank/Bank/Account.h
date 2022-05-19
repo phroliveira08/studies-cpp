@@ -14,4 +14,5 @@ public:
 	void transferTo(Account &accountTo, float valueTo);
 	float getBalance() const;
 	std::string getNameProfile() const;
+	std::string getAccountNumber() const;
 };
