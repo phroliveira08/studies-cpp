@@ -1,10 +1,10 @@
 #include "Account.h"
 
-Account::Account(std::string nameProfile, std::string accountNumber) {
-	this->nameProfile = nameProfile;
-	this->accountNumber = accountNumber;
-	this->balance = 0;
-}
+Account::Account(std::string nameProfile, std::string accountNumber): 
+	nameProfile(nameProfile),
+	accountNumber(accountNumber),
+	balance(0)
+{}
 
 void Account::deposit(float valueToDeposit) {
 	if (valueToDeposit <= 0) {
