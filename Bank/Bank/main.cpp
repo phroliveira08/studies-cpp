@@ -14,6 +14,7 @@ int main() {
 	account1.deposit(500);
 	account1.withdraw(200);
 	account1.transferTo(account2, 140);
+	account2.transferTo(account1, 40);
 
 	showBalance(account1);
 	showBalance(account2);
