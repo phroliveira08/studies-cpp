@@ -24,4 +24,7 @@ int main() {
 	showBalance(account2);
 	showBalance(account3);
 	showBalance(account4);
+
+	account1.changeNameProfile("Novo Nome1");
+	showBalance(account1);
 }

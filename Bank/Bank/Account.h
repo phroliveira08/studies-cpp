@@ -12,6 +12,7 @@ public:
 	void deposit(float valueToDeposit);
 	void withdraw(float valueToWithdraw);
 	void transferTo(Account &accountTo, float valueTo);
+	void changeNameProfile(std::string newName);
 	float getBalance() const;
 	std::string getNameProfile() const;
 	std::string getAccountNumber() const;

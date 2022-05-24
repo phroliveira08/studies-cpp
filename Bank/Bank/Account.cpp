@@ -42,6 +42,11 @@ std::string Account::getNameProfile() const {
 	return nameProfile;
 }
 
+void Account::changeNameProfile(std::string newName)
+{
+	this->nameProfile = newName;
+}
+
 std::string Account::getAccountNumber() const {
 	return accountNumber;
 }
