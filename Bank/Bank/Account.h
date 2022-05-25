@@ -2,6 +2,13 @@
 #include <string>
 
 class Account {
+
+private:
+	static int numberAccounts;
+
+public:
+	static int getNumberAccounts();
+
 private:
 	std::string nameProfile;
 	std::string accountNumber;
@@ -9,6 +16,7 @@ private:
 
 public:
 	Account(std::string nameProfile, std::string accountNumber);
+	~Account();
 	void deposit(float valueToDeposit);
 	void withdraw(float valueToWithdraw);
 	void transferTo(Account &accountTo, float valueTo);

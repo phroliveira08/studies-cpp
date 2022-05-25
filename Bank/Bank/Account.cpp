@@ -2,11 +2,19 @@
 #include <iostream>
 #include "Account.h"
 
+int Account::numberAccounts = 0;
+
 Account::Account(std::string nameProfile, std::string accountNumber): 
 	nameProfile(nameProfile),
 	accountNumber(accountNumber),
 	balance(0)
-{}
+{
+	numberAccounts++;
+}
+
+Account::~Account() {
+	numberAccounts--;
+}
 
 void Account::deposit(float valueToDeposit) {
 	if (valueToDeposit <= 0) {
@@ -49,4 +57,8 @@ void Account::changeNameProfile(std::string newName)
 
 std::string Account::getAccountNumber() const {
 	return accountNumber;
+}
+
+int Account::getNumberAccounts() {
+	return numberAccounts;
 }
