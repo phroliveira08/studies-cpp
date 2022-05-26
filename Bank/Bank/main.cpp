@@ -4,12 +4,11 @@
 using namespace std;
 
 void showBalance(const Account& account) {
-	Account testAccount("ToDelete", "105");
-	cout << "Balance from " << account.getNameProfile() << " is " << account.getBalance() << endl;
+	cout << "Balance from " << account.getProfileName() << " is " << account.getBalance() << endl;
 }
 
 int main() {
-	Account account1("Nome1", "100");
+	Account account1(string("Nome1"), "100");
 	Account account2("Nome2", "101");
 	Account account3("Nome3", "102");
 	Account account4("Nome4", "103");
@@ -25,9 +24,6 @@ int main() {
 	showBalance(account2);
 	showBalance(account3);
 	showBalance(account4);
-
-	account1.changeNameProfile("Novo Nome1");
-	showBalance(account1);
 
 	cout << "Num: " << Account::getNumberAccounts() << endl;
 }

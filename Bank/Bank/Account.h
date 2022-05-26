@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Holder.h"
 
 class Account {
 
@@ -10,18 +11,17 @@ public:
 	static int getNumberAccounts();
 
 private:
-	std::string nameProfile;
+	Holder holder;
 	std::string accountNumber;
 	float balance;
 
 public:
-	Account(std::string nameProfile, std::string accountNumber);
+	Account(Holder holder, std::string accountNumber);
 	~Account();
-	void deposit(float valueToDeposit);
-	void withdraw(float valueToWithdraw);
-	void transferTo(Account &accountTo, float valueTo);
-	void changeNameProfile(std::string newName);
+	void deposit(float value);
+	void withdraw(float value);
+	void transferTo(Account &accountTo, float value);
 	float getBalance() const;
-	std::string getNameProfile() const;
 	std::string getAccountNumber() const;
+	std::string getProfileName() const;
 };

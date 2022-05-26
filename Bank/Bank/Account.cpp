@@ -1,11 +1,12 @@
 #include <stdexcept>
 #include <iostream>
 #include "Account.h"
+#include "Holder.h"
 
 int Account::numberAccounts = 0;
 
-Account::Account(std::string nameProfile, std::string accountNumber): 
-	nameProfile(nameProfile),
+Account::Account(Holder holder, std::string accountNumber):
+	holder(holder),
 	accountNumber(accountNumber),
 	balance(0)
 {
@@ -16,27 +17,27 @@ Account::~Account() {
 	numberAccounts--;
 }
 
-void Account::deposit(float valueToDeposit) {
-	if (valueToDeposit <= 0) {
+void Account::deposit(float value) {
+	if (value <= 0) {
 		throw std::invalid_argument("It isn't possible to deposit negative values");
 	}
-	balance += valueToDeposit;
+	balance += value;
 }
 
-void Account::withdraw(float valueToWithdraw) {
-	if (valueToWithdraw > balance) {
+void Account::withdraw(float value) {
+	if (value > balance) {
 		throw std::invalid_argument("You don't have enough money");
 	}
-	if (valueToWithdraw <= 0) {
+	if (value <= 0) {
 		throw std::invalid_argument("It isn't possible to withdraw negative values");
 	}
-	balance -= valueToWithdraw;
+	balance -= value;
 }
 
-void Account::transferTo(Account &accountTo, float valueTo) {
+void Account::transferTo(Account &accountTo, float value) {
 	try {
-		this->withdraw(valueTo);
-		accountTo.deposit(valueTo);
+		this->withdraw(value);
+		accountTo.deposit(value);
 	}catch(std::invalid_argument& e){
 		std::cout << e.what() << std::endl;
 	}
@@ -46,17 +47,12 @@ float Account::getBalance() const {
 	return balance;
 }
 
-std::string Account::getNameProfile() const {
-	return nameProfile;
-}
-
-void Account::changeNameProfile(std::string newName)
-{
-	this->nameProfile = newName;
-}
-
 std::string Account::getAccountNumber() const {
 	return accountNumber;
+}
+
+std::string Account::getProfileName() const {
+	return holder.getName();
 }
 
 int Account::getNumberAccounts() {
