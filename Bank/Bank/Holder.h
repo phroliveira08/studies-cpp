@@ -1,12 +1,10 @@
 #pragma once
+#include "Person.h"
 #include <string>
 
-class Holder {
-private:
-	std::string name;
-
+class Holder : public Person
+{
 public:
 	Holder(std::string name);
 	Holder(const char* name);
-	std::string getName() const;
 };

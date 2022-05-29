@@ -1,4 +1,5 @@
 #include "Account.h"
+#include "Employee.h"
 #include <iostream>
 
 using namespace std;
@@ -15,6 +16,7 @@ int main() {
 	Account account2("Nome2", "101");
 	Account account3("Nome3", "102");
 	Account account4("Nome4", "103");
+	Employee employee1("Func1", 1800.00);
 
 	Account* account5 = new Account("Nome5", "103"); //HEAP
 	

@@ -1,11 +1,7 @@
 #include "Holder.h"
 
-Holder::Holder(std::string name):name(name)
+Holder::Holder(std::string name): Person(name)
 {}
 
-Holder::Holder(const char* name): name(name)
+Holder::Holder(const char* name): Person(name)
 {}
-
-std::string Holder::getName() const{
-	return name;
-}
