@@ -4,13 +4,6 @@
 
 using namespace std;
 
-void showBalance(const Account* account) {
-	cout << "Balance from " << account->getProfileName() << " is " << account->getBalance() << endl;
-}
-void showBalance(const Account& account) {
-	cout << "Balance from " << account.getProfileName() << " is " << account.getBalance() << endl;
-}
-
 int main() {
 	Account account1(string("Nome1"), "100");
 	Account account2("Nome2", "101");
@@ -28,11 +21,11 @@ int main() {
 	account1.transferTo(account4, 25);
 	account5->deposit(1000);
 
-	showBalance(account1);
-	showBalance(account2);
-	showBalance(account3);
-	showBalance(account4);
-	showBalance(account5);
+	account1.getBalance();
+	account2.getBalance();
+	account3.getBalance();
+	account4.getBalance();
+	account5->getBalance();
 
 	cout << "Num: " << Account::getNumberAccounts() << endl;
 }

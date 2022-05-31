@@ -44,6 +44,7 @@ void Account::transferTo(Account &accountTo, float value) {
 }
 
 float Account::getBalance() const {
+	std::cout << balance << std::endl;
 	return balance;
 }
 
