@@ -10,13 +10,14 @@ private:
 public:
 	static int getNumberAccounts();
 
-private:
+protected:
 	Holder holder;
 	std::string accountNumber;
 	float balance;
+	float tax;
 
 public:
-	Account(Holder holder, std::string accountNumber);
+	Account(Holder holder, std::string accountNumber, float tax);
 	~Account();
 	void deposit(float value);
 	void withdraw(float value);

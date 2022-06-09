@@ -5,10 +5,11 @@
 
 int Account::numberAccounts = 0;
 
-Account::Account(Holder holder, std::string accountNumber):
+Account::Account(Holder holder, std::string accountNumber, float tax):
 	holder(holder),
 	accountNumber(accountNumber),
-	balance(0)
+	balance(0),
+	tax(tax)
 {
 	numberAccounts++;
 }
@@ -25,13 +26,18 @@ void Account::deposit(float value) {
 }
 
 void Account::withdraw(float value) {
-	if (value > balance) {
-		throw std::invalid_argument("You don't have enough money");
-	}
 	if (value <= 0) {
 		throw std::invalid_argument("It isn't possible to withdraw negative values");
 	}
-	balance -= value;
+
+	float taxValue = value * tax;
+	float valueToWithdraw = value + taxValue;
+
+	if (valueToWithdraw > balance) {
+		throw std::invalid_argument("You don't have enough money");
+	}
+	
+	balance -= valueToWithdraw;
 }
 
 void Account::transferTo(Account &accountTo, float value) {
